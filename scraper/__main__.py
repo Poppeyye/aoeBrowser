@@ -36,7 +36,7 @@ def format_room_message(rooms_list):
 def lobbies():
     url = 'https://aoe2recs.com/browser'
     options = webdriver.ChromeOptions()
-    # options.add_argument('--headless')
+    options.add_argument('--headless')
     driver = webdriver.Chrome(options=options)
 
     driver.get(url)
@@ -88,7 +88,8 @@ available_lobbies = format_room_message(open_rooms(lobbies()))
 async def on_ready():
     channel = client.get_channel(1144263332245819484)
     await channel.send("\n".join(available_lobbies))
-
+    # Close the bot
+    await client.close()
 
 if available_lobbies:
     client.run(TOKEN)
