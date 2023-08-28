@@ -9,7 +9,7 @@ class AoeRORLobbyBrowser:
     def __init__(self):
         self.url = 'https://aoe2recs.com/browser'
         self.options = webdriver.ChromeOptions()
-        # self.options.add_argument('--headless')
+        self.options.add_argument('--headless')
         self.driver = webdriver.Chrome(options=self.options)
         self.driver.get(self.url)
         self.wait = WebDriverWait(self.driver, 10)
