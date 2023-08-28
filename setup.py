@@ -10,7 +10,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'aoeBrowser = scraper.__main__:main'
+            'aoeBrowser = discord_bot.run_bot:main'
         ]
     },
 )
