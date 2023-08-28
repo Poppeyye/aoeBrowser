@@ -9,7 +9,7 @@ class AoeRORLobbyBrowser:
     def __init__(self):
         self.url = 'https://aoe2recs.com/browser'
         self.options = webdriver.ChromeOptions()
-        self.options.add_argument('--headless')
+        # self.options.add_argument('--headless')
         self.driver = webdriver.Chrome(options=self.options)
         self.driver.get(self.url)
         self.wait = WebDriverWait(self.driver, 10)
@@ -53,8 +53,11 @@ class AoeRORLobbyBrowser:
             data_list.append(row_data)
         return data_list
 
-    def get_all_lobbies(self):
+    def get_all_lobbies(self, only_ranked: bool = True):
         aoe2check = self.wait.until(EC.presence_of_element_located((By.ID, "aoe2")))
+        rankedcheck = self.wait.until(EC.presence_of_element_located((By.ID, "ranked")))
+        if only_ranked:
+            rankedcheck.click()
         if aoe2check.is_selected():
             aoe2check.click()
         try:
